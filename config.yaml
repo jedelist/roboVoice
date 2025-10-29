@@ -1,0 +1,18 @@
+device: "cpu"            # CHANGE TO "cuda" on Jetson
+model_size: "tiny.en"    # faster-whisper sizes
+compute_type: "int8"     # "float16" on Jetson; "int8" OK on CPU
+device_index: 2
+sample_rate: 16000
+block_duration_ms: 30
+vad:
+  threshold: 0.5
+  min_speech_ms: 200
+  max_speech_ms: 3000
+  min_silence_ms: 300
+commands:
+  forward: ["forward","ahead","go","move","proceed"]
+  left: ["left","turn left"]
+  right: ["right","turn right"]
+  back: ["back","backward","reverse","go back"]
+  stop: ["stop","halt"]
+  manual: ["manual","override","assist","take over"]
