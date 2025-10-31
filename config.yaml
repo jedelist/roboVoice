@@ -1,7 +1,7 @@
-device: "cpu"            # CHANGE TO "cuda" on Jetson
+device: "cpu"            # CHANGE TO cuda on Jetson
 model_size: "tiny.en"    # faster-whisper sizes
-compute_type: "int8"     # "float16" on Jetson; "int8" OK on CPU
-device_index: 2
+compute_type: "int8"     # float16 on Jetson; int8 OK on CPU
+device_index: 1
 sample_rate: 16000
 block_duration_ms: 30
 vad:
