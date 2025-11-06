@@ -19,7 +19,7 @@ class AudioStream:
             callback=self._callback,
             samplerate=self.sr,
             blocksize=self.block,
-            device=self.device_index,   # set in the confix.yml
+            device=self.device_index,   # set in the config.yml
             dtype='float32'
         )
         self.stream.start()
