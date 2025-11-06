@@ -8,3 +8,5 @@ rapidfuzz
 pyyaml
 silero-vad==5.1
 requests
+soundfile
+torchcodec
