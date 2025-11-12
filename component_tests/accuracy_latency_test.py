@@ -95,10 +95,10 @@ def main():
 
     # Accuracy and latency boolean checks
     acc_pass = acc >= 0.90
-    lat_pass = (median_lat <= 0.7) and (p95_lat <= 1.0)
+    lat_pass = (median_lat <= 0.7) and (p95_lat <= 0.7)
 
     print(f"\nPass accuracy spec (>= 90%)? {'YES' if acc_pass else 'NO'}")
-    print(f"Pass latency spec (median <= 0.7s, p95 <= 1.0s)? {'YES' if lat_pass else 'NO'}")
+    print(f"Pass latency spec (median <= 0.7s, p95 <= 0.7s)? {'YES' if lat_pass else 'NO'}")
 
 
 if __name__ == "__main__":
