@@ -16,11 +16,16 @@ def main():
                         block_ms=cfg["block_duration_ms"], 
                         device_index=cfg.get("device_index"))
     
-    vad = VADSegmenter(sr=cfg["sample_rate"],
-                       th=cfg["vad"]["threshold"],
-                       min_speech_ms=cfg["vad"]["min_speech_ms"],
-                       max_speech_ms=cfg["vad"]["max_speech_ms"],
-                       min_silence_ms=cfg["vad"]["min_silence_ms"])
+    vcfg = cfg["vad"]
+    vad = VADSegmenter(
+        sr=cfg["sample_rate"],
+        th=vcfg["threshold"],
+        min_speech_ms=vcfg["min_speech_ms"],
+        max_speech_ms=vcfg["max_speech_ms"],
+        min_silence_ms=vcfg["min_silence_ms"],
+        max_window_ms=vcfg["max_window_ms"],
+        vad_stride=vcfg["stride"]
+    )
     asr = ASR(model_size=cfg["model_size"], device=cfg["device"], compute_type=cfg["compute_type"])
     mapper = CommandMapper(cfg["commands"], score_cutoff=80)
 
@@ -32,6 +37,13 @@ def main():
             seg = vad.push(chunk)
             if seg is None: 
                 continue
+
+            MAX_SEG_SEC = 1.0
+            max_len = int(MAX_SEG_SEC * cfg["sample_rate"])
+            if len(seg) > max_len:
+                seg = seg[-max_len:]  # keep the last 1s
+
+
             text = asr.transcribe(seg)
             cmd = mapper.map_text(text)
             print(f"[transcript] {text!r}  ->  [cmd] {cmd}")

@@ -30,3 +30,16 @@ device_index: 2
 ```bash
 python main_realtime_asr.py
 ```
+
+## 2. For computer 
+
+### Set device index: 
+
+Run the following to find the device index:
+
+```bash
+python -m sounddevice
+```
+
+Ex: ` 24 USB Audio Device: - (hw:2,0), ALSA (1 in, 0 out)` is index 24
+
