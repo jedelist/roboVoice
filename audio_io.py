@@ -5,7 +5,7 @@ from queue import Queue
 from scipy.signal import resample_poly
 
 TARGET_SR = 16000          # what VAD/ASR expect
-USB_MIC_INDEX = 24         # your USB Audio Device index
+USB_MIC_INDEX = 24         # USB Audio Device index
 
 class AudioStream:
     def __init__(self, samplerate=TARGET_SR, block_ms=30, device_index=None):
